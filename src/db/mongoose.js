@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-const { isEmail, isPassword } = require('validator')
+const dotenv = require('dotenv');
 
-mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
+dotenv.config({ path: './.env' });
+
+mongoose.connect(process.env.ENVIRONMENT === 'local' ? process.env.LOCAL_DATABASE : process.env.PROD_DATABASE, {
     useNewUrlParser: true,
-    // useCreateIndex: true
 })
